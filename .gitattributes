@@ -1,0 +1,4 @@
+# Gradle (industrial-data-server): 스크립트 줄바꿈 고정
+industrial-data-server/gradlew text eol=lf
+industrial-data-server/gradlew.bat text eol=crlf
+*.jar binary

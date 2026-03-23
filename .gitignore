@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!**/gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -27,15 +28,26 @@ replay_pid*
 node_modules/
 dist/
 build/
+
+# Gradle / Spring Boot
+.gradle/
+HELP.md
+
+# IDE (JVM / Spring)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# infra
+# infra (로컬 Docker 볼륨·로그)
 infra/mosquitto/data/
-# infra/mosquitto/log/
-# infra/postgres/data/
-# infra/postgres/log/
+infra/mosquitto/log/
 infra/postgres/data/
+infra/postgres/log/
