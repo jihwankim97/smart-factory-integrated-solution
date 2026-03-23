@@ -46,11 +46,8 @@ out/
 .env.test.local
 .env.production.local
 
-# infra
+# infra (로컬 Docker 볼륨·로그)
 infra/mosquitto/data/
 infra/mosquitto/log/
 infra/postgres/data/
 infra/postgres/log/
-infra/postgres/data/
-
-pro.md
