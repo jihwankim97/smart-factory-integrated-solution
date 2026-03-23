@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!**/gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -22,3 +23,34 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Node.js
+node_modules/
+dist/
+build/
+
+# Gradle / Spring Boot
+.gradle/
+HELP.md
+
+# IDE (JVM / Spring)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# infra
+infra/mosquitto/data/
+infra/mosquitto/log/
+infra/postgres/data/
+infra/postgres/log/
+infra/postgres/data/
+
+pro.md
