@@ -1,5 +1,5 @@
 import { describe, it } from 'node:test';
-import assert from 'node:assert/strict';
+import * as assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
 import type mqtt from 'mqtt';
 import { BufferedMqttPublisher } from './buffered-mqtt-publisher';
