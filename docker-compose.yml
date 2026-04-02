@@ -13,7 +13,7 @@ services:
       - ./infra/mosquitto/log:/mosquitto/log
 
   postgres:
-    image: postgres:15
+    image: timescale/timescaledb:latest-pg15
     container_name: factory-db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
