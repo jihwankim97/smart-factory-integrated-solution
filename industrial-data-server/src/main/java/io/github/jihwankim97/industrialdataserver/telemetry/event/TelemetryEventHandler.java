@@ -10,12 +10,14 @@ public class TelemetryEventHandler {
     private final TelemetryService telemetryService;
 
     public TelemetryEventHandler(TelemetryService telemetryService) {
+
         this.telemetryService = telemetryService;
     }
 
 
     @EventListener
     public void onTelemetryIngested(TelemetryIngestedEvent event) {
+
         telemetryService.saveTelemetry(event);
     }
 }
