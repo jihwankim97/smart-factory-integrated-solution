@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 public class TelemetryServiceImpl implements TelemetryService{
     @Override
     public void saveTelemetry(TelemetryIngestedEvent event) {
-
+        System.out.println("event.service = " + event);
     }
 }

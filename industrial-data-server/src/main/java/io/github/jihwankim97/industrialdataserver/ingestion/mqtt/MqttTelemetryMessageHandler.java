@@ -1,10 +1,10 @@
 package io.github.jihwankim97.industrialdataserver.ingestion.mqtt;
 
+import org.springframework.context.ApplicationEventPublisher;
 import tools.jackson.databind.json.JsonMapper;
 import io.github.jihwankim97.industrialdataserver.ingestion.dto.GatewayMqttPayload;
 import io.github.jihwankim97.industrialdataserver.ingestion.dto.GatewayStatus;
 import io.github.jihwankim97.industrialdataserver.ingestion.event.TelemetryIngestedEvent;
-import io.github.jihwankim97.industrialdataserver.telemetry.service.TelemetryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,16 +21,17 @@ class MqttTelemetryMessageHandler implements GenericHandler<String> {
     private static final Logger log = LoggerFactory.getLogger(MqttTelemetryMessageHandler.class);
 
     private final JsonMapper jsonMapper;
-    private final TelemetryService telemetryService;
     private final String defaultSiteId;
+
+    private final ApplicationEventPublisher eventPublisher;
 
     MqttTelemetryMessageHandler(
             JsonMapper jsonMapper,
-            TelemetryService telemetryService,
+            ApplicationEventPublisher eventPublisher,
             @Value("${app.ingestion.default-site-id}") String defaultSiteId
     ) {
         this.jsonMapper = jsonMapper;
-        this.telemetryService = telemetryService;
+        this.eventPublisher = eventPublisher;
         this.defaultSiteId = defaultSiteId;
     }
 
@@ -51,7 +52,9 @@ class MqttTelemetryMessageHandler implements GenericHandler<String> {
                     status,
                     Instant.parse(gatewayPayload.collectedAt())
             );
-            telemetryService.saveTelemetry(event);
+
+            eventPublisher.publishEvent(event);
+
         } catch (Exception e) {
             handleError(topic, payload, e);
         }
