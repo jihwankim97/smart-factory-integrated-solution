@@ -24,16 +24,35 @@ public class MasterSite {
     @Column(nullable = false)
     private boolean active;
 
-
-
     protected MasterSite() {
     }
-
 
     public MasterSite(String id, String name, String timezone, boolean active) {
         this.id = id;
         this.name = name;
         this.timezone = timezone;
         this.active = active;
+    }
+
+    public void rename(String newName){
+        if(newName==null||newName.isBlank()){
+            throw new IllegalArgumentException("name required");
+        }
+        this.name = newName.trim();
+    }
+
+    public void deactivate(){
+        if (!this.active) {
+            throw new IllegalStateException("site already inactive:" + id);
+        }
+        this.active = false;
+    }
+
+    public void activate(){
+        this.active = true;
+    }
+
+    public boolean canAcceptTelemetry(){
+        return active;
     }
 }

@@ -27,7 +27,6 @@ public class MasterAsset {
     @Column(nullable = false)
     private boolean active;
 
-
     protected MasterAsset() {
     }
 
@@ -37,5 +36,27 @@ public class MasterAsset {
         this.name = name;
         this.type = type;
         this.active = active;
+    }
+
+    public void rename(String newName){
+        if(newName==null||newName.isBlank()){
+            throw new IllegalArgumentException("name required");
+        }
+        this.name = newName.trim();
+    }
+
+    public void deactivate(){
+        if(!this.active){
+            throw new IllegalStateException("asset already inactive: " + id);
+        }
+        this.active=false;
+    }
+
+    public void activate(){
+        this.active = true;
+    }
+
+    public boolean canAcceptTelemetry(){
+        return active;
     }
 }
